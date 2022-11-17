@@ -8,6 +8,7 @@ import java.sql.Date;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
 
 @Entity
 public class Wizard {
@@ -22,8 +23,8 @@ public class Wizard {
     private String biography;
     private boolean muggle;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "school_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, optional = false)
+    @JoinColumn(name = "school_id", nullable = false)
     private School school;
 
     public School getSchool() {
